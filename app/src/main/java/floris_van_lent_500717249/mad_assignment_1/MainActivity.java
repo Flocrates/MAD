@@ -1,9 +1,12 @@
 package floris_van_lent_500717249.mad_assignment_1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,12 +20,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import floris_van_lent_500717249.mad_assignment_1.database.DataSource;
+
 public class MainActivity extends AppCompatActivity {
     private List<Serie> seriesList = new ArrayList<>();
     private RecyclerView recyclerView;
     private SeriesRecyclerAdapter mAdapter;
 
-    SQLiteDatabase database;
+    DataSource mDataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +36,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SQLiteOpenHelper databaseHelper = new DatabaseHelper(this);
-        database = databaseHelper.getWritableDatabase();
+        mDataSource = new DataSource(this);
+        mDataSource.open();
+        Toast.makeText(this, "Database found!", Toast.LENGTH_SHORT).show();
+
+        long seriesCount = mDataSource.getSeriesCount();
+        if (seriesCount == 0) {
+            mockSeries();
+            Toast.makeText(this, "Added mock series to database!", Toast.LENGTH_LONG).show();
+        }
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -42,20 +54,39 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        mockSeries();
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), AddSerie.class);
+                startActivityForResult(intent, 1);
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mDataSource.close();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mDataSource.open();
     }
 
     private void mockSeries() {
-        Serie serie1  = new Serie ("How I Met Your Mother", "2005 - 2012");
-        Serie serie2  = new Serie ("FRIENDS", "1995 - 2002");
-        Serie serie3  = new Serie ("The Newsroom", "2005");
-        Serie serie4  = new Serie ("Orphan Black", "2012");
-        Serie serie5  = new Serie ("Game of Thrones", "2011");
-        Serie serie6  = new Serie ("Attack on Titan", "2007");
-        Serie serie7  = new Serie ("Fullmetal Alchemist", "2010");
-        Serie serie8  = new Serie ("Tom & Jerry", "1965");
-        Serie serie9  = new Serie ("Spongebob Squarepants", "1996");
-        Serie serie10 = new Serie ("Fairly Odd Parents", "1998");
+        Serie serie1  = new Serie ("1", "How I Met Your Mother", "2005 - 2012");
+        Serie serie2  = new Serie ("2", "FRIENDS", "1995 - 2002");
+        Serie serie3  = new Serie ("3", "The Newsroom", "2005");
+        Serie serie4  = new Serie ("4", "Orphan Black", "2012");
+        Serie serie5  = new Serie ("5", "Game of Thrones", "2011");
+        Serie serie6  = new Serie ("6", "Attack on Titan", "2007");
+        Serie serie7  = new Serie ("7", "Fullmetal Alchemist", "2010");
+        Serie serie8  = new Serie ("8", "Tom & Jerry", "1965");
+        Serie serie9  = new Serie ("9", "Spongebob Squarepants", "1996");
+        Serie serie10 = new Serie ("10", "Fairly Odd Parents", "1998");
 
         seriesList.add(serie1);
         seriesList.add(serie2);
@@ -67,6 +98,14 @@ public class MainActivity extends AppCompatActivity {
         seriesList.add(serie8);
         seriesList.add(serie9);
         seriesList.add(serie10);
+
+        for (Serie serie : seriesList) {
+            try {
+                mDataSource.createSerie(serie);
+            } catch (SQLiteException e) {
+                e.printStackTrace();
+            }
+        }
 
         mAdapter.notifyDataSetChanged();
     }

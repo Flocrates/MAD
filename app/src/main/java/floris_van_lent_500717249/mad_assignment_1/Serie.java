@@ -1,5 +1,9 @@
 package floris_van_lent_500717249.mad_assignment_1;
 
+import android.content.ContentValues;
+
+import floris_van_lent_500717249.mad_assignment_1.database.SeriesTable;
+
 /**
  * Created by Floris on 30-03-2017.
  */
@@ -40,5 +44,15 @@ public class Serie {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public ContentValues toValues() {
+        ContentValues values = new ContentValues(3);
+
+        values.put(SeriesTable.COLUMN_ID, id);
+        values.put(SeriesTable.COLUMN_TITLE, title);
+        values.put(SeriesTable.COLUMN_YEAR, year);
+
+        return values;
     }
 }
