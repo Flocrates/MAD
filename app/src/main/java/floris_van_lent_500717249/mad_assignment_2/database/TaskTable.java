@@ -5,7 +5,7 @@ package floris_van_lent_500717249.mad_assignment_2.database;
  *
  */
 
-public class SeriesTable {
+public class TaskTable {
 
     // Table name
     public static final String TABLE_SERIES = "series";

@@ -25,7 +25,7 @@
         android:layout_below="@id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TV-Show" />
+        android:text="Henk de Boer" />
 
     <TextView
         android:id="@+id/year"

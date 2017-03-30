@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import floris_van_lent_500717249.mad_assignment_2.Serie;
+import floris_van_lent_500717249.mad_assignment_2.Task;
 
 /**
  * Created by Floris on 30-03-2017.
@@ -35,46 +35,46 @@ public class DataSource {
         mDatabase.close();
     }
 
-    public Serie createSerie(Serie serie) {
-        ContentValues values = serie.toValues();
-        mDatabase.insert(SeriesTable.TABLE_SERIES, null, values);
-        return serie;
+    public Task createSerie(Task task) {
+        ContentValues values = task.toValues();
+        mDatabase.insert(TaskTable.TABLE_SERIES, null, values);
+        return task;
     }
 
-    public List<Serie> retrieveAllSeries() {
-        List<Serie> seriesList = new ArrayList<>();
-        Cursor cursor = mDatabase.query(SeriesTable.TABLE_SERIES, SeriesTable.ALL_COLUMNS, null, null, null, null, null);
+    public List<Task> retrieveAllSeries() {
+        List<Task> seriesList = new ArrayList<>();
+        Cursor cursor = mDatabase.query(TaskTable.TABLE_SERIES, TaskTable.ALL_COLUMNS, null, null, null, null, null);
 
         while (cursor.moveToNext()) {
-            Serie serie = new Serie();
-            serie.setId(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_ID)));
-            serie.setTitle(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_TITLE)));
-            serie.setYear(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_PERSON)));
-            seriesList.add(serie);
+            Task task = new Task();
+            task.setId(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_ID)));
+            task.setTitle(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_TITLE)));
+            task.setYear(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_PERSON)));
+            seriesList.add(task);
         }
         return seriesList;
     }
 
-    public Serie retrieveSerie(String id) {
-        Cursor cursor = mDatabase.query(SeriesTable.TABLE_SERIES, SeriesTable.ALL_COLUMNS, SeriesTable.COLUMN_ID + "=?", new String[] {id}, null, null, null);
+    public Task retrieveSerie(String id) {
+        Cursor cursor = mDatabase.query(TaskTable.TABLE_SERIES, TaskTable.ALL_COLUMNS, TaskTable.COLUMN_ID + "=?", new String[] {id}, null, null, null);
         cursor.moveToFirst();
 
-        Serie serie = new Serie();
-        serie.setId(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_ID)));
-        serie.setTitle(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_TITLE)));
-        serie.setYear(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_PERSON)));
-        return serie;
+        Task task = new Task();
+        task.setId(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_ID)));
+        task.setTitle(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_TITLE)));
+        task.setYear(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_PERSON)));
+        return task;
     }
 
-    public void updateSerie(Serie serie) {
-        mDatabase.update(SeriesTable.TABLE_SERIES, serie.toValues(), "id =? ", new String[] {serie.getId()});
+    public void updateSerie(Task task) {
+        mDatabase.update(TaskTable.TABLE_SERIES, task.toValues(), "id =? ", new String[] {task.getId()});
     }
 
     public void deleteSerie(String id) {
-        mDatabase.delete(SeriesTable.TABLE_SERIES, "id =? ", new String[] {id});
+        mDatabase.delete(TaskTable.TABLE_SERIES, "id =? ", new String[] {id});
     }
 
     public long getSeriesCount() {
-        return DatabaseUtils.queryNumEntries(mDatabase, SeriesTable.TABLE_SERIES);
+        return DatabaseUtils.queryNumEntries(mDatabase, TaskTable.TABLE_SERIES);
     }
 }

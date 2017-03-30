@@ -2,21 +2,21 @@ package floris_van_lent_500717249.mad_assignment_2;
 
 import android.content.ContentValues;
 
-import floris_van_lent_500717249.mad_assignment_2.database.SeriesTable;
+import floris_van_lent_500717249.mad_assignment_2.database.TaskTable;
 
 /**
  * Created by Floris on 30-03-2017.
  */
 
-public class Serie {
+public class Task {
     private String id;
     private String title;
     private String person;
 
-    public Serie() {
+    public Task() {
     }
 
-    public Serie(String id, String title, String person) {
+    public Task(String id, String title, String person) {
         this.id = id;
         this.title = title;
         this.person = person;
@@ -49,9 +49,9 @@ public class Serie {
     public ContentValues toValues() {
         ContentValues values = new ContentValues(3);
 
-        values.put(SeriesTable.COLUMN_ID, id);
-        values.put(SeriesTable.COLUMN_TITLE, title);
-        values.put(SeriesTable.COLUMN_PERSON, person);
+        values.put(TaskTable.COLUMN_ID, id);
+        values.put(TaskTable.COLUMN_TITLE, title);
+        values.put(TaskTable.COLUMN_PERSON, person);
 
         return values;
     }

@@ -13,16 +13,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import floris_van_lent_500717249.mad_assignment_1.R;
+public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdapter.SerieHolder> {
 
-public class SeriesRecyclerAdapter extends RecyclerView.Adapter<SeriesRecyclerAdapter.SerieHolder> {
-
-    private List<Serie> seriesList;
+    private List<Task> seriesList;
 
 
     public class SerieHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView title, year;
-        private Serie serie;
+        private Task task;
 
         public SerieHolder(View view) {
             super(view);
@@ -31,36 +29,36 @@ public class SeriesRecyclerAdapter extends RecyclerView.Adapter<SeriesRecyclerAd
             year = (TextView) view.findViewById(R.id.year);
         }
 
-        public void bindSerie(Serie serie) {
-            this.serie = serie;
-            title.setText(serie.getTitle());
-            year.setText(serie.getYear());
+        public void bindSerie(Task task) {
+            this.task = task;
+            title.setText(task.getTitle());
+            year.setText(task.getYear());
         }
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(view.getContext(), SerieUpdateActivity.class);
-            intent.putExtra("id", serie.getId());
+            Intent intent = new Intent(view.getContext(), TaskUpdateActivity.class);
+            intent.putExtra("id", task.getId());
             view.getContext().startActivity(intent);
         }
     }
 
-    public SeriesRecyclerAdapter(List<Serie> seriesList) {
+    public TasksRecyclerAdapter(List<Task> seriesList) {
         this.seriesList = seriesList;
     }
 
     @Override
     public SerieHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.series_list_row, parent, false);
+                .inflate(R.layout.tasks_list_row, parent, false);
 
         return new SerieHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(SerieHolder holder, int position) {
-        Serie serie = seriesList.get(position);
-        holder.bindSerie(serie);
+        Task task = seriesList.get(position);
+        holder.bindSerie(task);
     }
 
     @Override

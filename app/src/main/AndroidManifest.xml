@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="floris_van_lent_500717249.mad_assignment_1">
+    package="floris_van_lent_500717249.mad_assignment_2">
 
     <application
         android:allowBackup="true"
@@ -18,8 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="floris_van_lent_500717249.mad_assignment_2.SerieCreationActivity" android:parentActivityName="floris_van_lent_500717249.mad_assignment_2.MainActivity"></activity>
-        <activity android:name="floris_van_lent_500717249.mad_assignment_2.SerieUpdateActivity" android:parentActivityName="floris_van_lent_500717249.mad_assignment_2.MainActivity"></activity>
+        <activity android:name="floris_van_lent_500717249.mad_assignment_2.TaskCreationActivity" android:parentActivityName="floris_van_lent_500717249.mad_assignment_2.MainActivity"></activity>
+        <activity android:name="floris_van_lent_500717249.mad_assignment_2.TaskUpdateActivity" android:parentActivityName="floris_van_lent_500717249.mad_assignment_2.MainActivity"></activity>
     </application>
 
 </manifest>

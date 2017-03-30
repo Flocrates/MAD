@@ -1,4 +1,4 @@
-package floris_van_lent_500717249.mad_assignment_1;
+package floris_van_lent_500717249.mad_assignment_2;
 
 import org.junit.Test;
 
