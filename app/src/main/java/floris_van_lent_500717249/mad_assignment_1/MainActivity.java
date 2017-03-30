@@ -1,6 +1,8 @@
 package floris_van_lent_500717249.mad_assignment_1;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -20,12 +22,17 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private SeriesRecyclerAdapter mAdapter;
 
+    SQLiteDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SQLiteOpenHelper databaseHelper = new DatabaseHelper(this);
+        database = databaseHelper.getWritableDatabase();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
