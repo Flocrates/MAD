@@ -1,9 +1,7 @@
 package floris_van_lent_500717249.mad_assignment_1;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,11 +10,12 @@ import android.widget.EditText;
 
 import floris_van_lent_500717249.mad_assignment_1.database.DataSource;
 
-public class SerieCreationActivity extends AppCompatActivity {
+public class SerieUpdateActivity extends AppCompatActivity {
     DataSource dataSource;
     EditText titleField;
     EditText yearField;
-    Button saveButton;
+    Button updateButton;
+    Button deleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +25,26 @@ public class SerieCreationActivity extends AppCompatActivity {
 
         titleField = (EditText) findViewById(R.id.titleField);
         yearField = (EditText) findViewById(R.id.yearField);
-        saveButton = (Button) findViewById(R.id.saveButton);
+        updateButton = (Button) findViewById(R.id.updateButton);
+        deleteButton = (Button) findViewById(R.id.deleteButton);
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!TextUtils.isEmpty(titleField.getText()) && !TextUtils.isEmpty(yearField.getText())) {
+
+                    long id = (dataSource.getSeriesCount() + 1);
+                    String title = titleField.getText().toString();
+                    String year = yearField.getText().toString();
+                    System.out.println("" + id);
+                    Serie serie = new Serie("" + id, title, year);
+                    dataSource.createSerie(serie);
+                    finish();
+                }
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!TextUtils.isEmpty(titleField.getText()) && !TextUtils.isEmpty(yearField.getText())) {
