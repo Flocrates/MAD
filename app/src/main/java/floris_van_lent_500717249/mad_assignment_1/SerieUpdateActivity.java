@@ -16,6 +16,8 @@ public class SerieUpdateActivity extends AppCompatActivity {
     EditText yearField;
     Button updateButton;
     Button deleteButton;
+    String currentSerieId;
+    Serie currentSerie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,21 +25,27 @@ public class SerieUpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_serie_creation);
         dataSource = new DataSource(this);
 
+
         titleField = (EditText) findViewById(R.id.titleField);
         yearField = (EditText) findViewById(R.id.yearField);
         updateButton = (Button) findViewById(R.id.updateButton);
         deleteButton = (Button) findViewById(R.id.deleteButton);
+
+        currentSerieId = getIntent().getStringExtra("id");
+        currentSerie = dataSource.retrieveSerie(currentSerieId);
+
+        titleField.setText(currentSerie.getTitle());
+        yearField.setText(currentSerie.getYear());
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!TextUtils.isEmpty(titleField.getText()) && !TextUtils.isEmpty(yearField.getText())) {
 
-                    long id = (dataSource.getSeriesCount() + 1);
+                    String id = currentSerieId;
                     String title = titleField.getText().toString();
                     String year = yearField.getText().toString();
-                    System.out.println("" + id);
-                    Serie serie = new Serie("" + id, title, year);
+                    Serie serie = new Serie(id, title, year);
                     dataSource.createSerie(serie);
                     finish();
                 }
@@ -47,16 +55,8 @@ public class SerieUpdateActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!TextUtils.isEmpty(titleField.getText()) && !TextUtils.isEmpty(yearField.getText())) {
-
-                    long id = (dataSource.getSeriesCount() + 1);
-                    String title = titleField.getText().toString();
-                    String year = yearField.getText().toString();
-                    System.out.println("" + id);
-                    Serie serie = new Serie("" + id, title, year);
-                    dataSource.createSerie(serie);
-                    finish();
-                }
+            dataSource.deleteSerie(currentSerieId);
+            finish();
             }
         });
     }

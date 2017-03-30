@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SerieCreationActivity" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".SerieUpdateActivity" android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

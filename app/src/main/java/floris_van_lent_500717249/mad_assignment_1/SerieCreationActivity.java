@@ -36,7 +36,6 @@ public class SerieCreationActivity extends AppCompatActivity {
                     long id = (dataSource.getSeriesCount() + 1);
                     String title = titleField.getText().toString();
                     String year = yearField.getText().toString();
-                    System.out.println("" + id);
                     Serie serie = new Serie("" + id, title, year);
                     dataSource.createSerie(serie);
                     finish();

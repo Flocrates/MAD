@@ -55,6 +55,24 @@ public class DataSource {
         return seriesList;
     }
 
+    public Serie retrieveSerie(String id) {
+        System.out.println("YO CHECK DIT ID DAN " + id);
+        Cursor cursor = mDatabase.query(SeriesTable.TABLE_SERIES, new String[] {SeriesTable.COLUMN_ID}, "id =? ", new String[] {id}, null, null, null);
+        Serie serie = new Serie();
+        serie.setId(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_ID)));
+        serie.setTitle(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_TITLE)));
+        serie.setYear(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_YEAR)));
+        return serie;
+    }
+
+    public void updateSerie(Serie serie) {
+        mDatabase.update(SeriesTable.TABLE_SERIES, serie.toValues(), "id =? ", new String[] {serie.getId()});
+    }
+
+    public void deleteSerie(String id) {
+        mDatabase.delete(SeriesTable.TABLE_SERIES, "id =? ", new String[] {id});
+    }
+
     public long getSeriesCount() {
         return DatabaseUtils.queryNumEntries(mDatabase, SeriesTable.TABLE_SERIES);
     }
