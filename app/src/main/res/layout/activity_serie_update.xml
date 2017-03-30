@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="floris_van_lent_500717249.mad_assignment_1.SerieUpdateActivity">
+    tools:context="floris_van_lent_500717249.mad_assignment_1.floris_van_lent_500717249.mad_assignment_2.SerieUpdateActivity">
 
     <EditText
         android:layout_width="wrap_content"

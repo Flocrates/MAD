@@ -1,4 +1,4 @@
-package floris_van_lent_500717249.mad_assignment_1;
+package floris_van_lent_500717249.mad_assignment_2;
 
 /**
  * Created by Floris on 30-03-2017.
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+
+import floris_van_lent_500717249.mad_assignment_1.R;
 
 public class SeriesRecyclerAdapter extends RecyclerView.Adapter<SeriesRecyclerAdapter.SerieHolder> {
 

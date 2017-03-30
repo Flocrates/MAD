@@ -1,4 +1,4 @@
-package floris_van_lent_500717249.mad_assignment_1.database;
+package floris_van_lent_500717249.mad_assignment_2.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import floris_van_lent_500717249.mad_assignment_1.Serie;
+import floris_van_lent_500717249.mad_assignment_2.Serie;
 
 /**
  * Created by Floris on 30-03-2017.
@@ -49,7 +49,7 @@ public class DataSource {
             Serie serie = new Serie();
             serie.setId(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_ID)));
             serie.setTitle(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_TITLE)));
-            serie.setYear(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_YEAR)));
+            serie.setYear(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_PERSON)));
             seriesList.add(serie);
         }
         return seriesList;
@@ -62,7 +62,7 @@ public class DataSource {
         Serie serie = new Serie();
         serie.setId(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_ID)));
         serie.setTitle(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_TITLE)));
-        serie.setYear(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_YEAR)));
+        serie.setYear(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_PERSON)));
         return serie;
     }
 

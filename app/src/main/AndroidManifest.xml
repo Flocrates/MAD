@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="floris_van_lent_500717249.mad_assignment_2.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -18,8 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SerieCreationActivity" android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".SerieUpdateActivity" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name="floris_van_lent_500717249.mad_assignment_2.SerieCreationActivity" android:parentActivityName="floris_van_lent_500717249.mad_assignment_2.MainActivity"></activity>
+        <activity android:name="floris_van_lent_500717249.mad_assignment_2.SerieUpdateActivity" android:parentActivityName="floris_van_lent_500717249.mad_assignment_2.MainActivity"></activity>
     </application>
 
 </manifest>

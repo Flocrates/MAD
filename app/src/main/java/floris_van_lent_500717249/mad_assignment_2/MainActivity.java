@@ -1,10 +1,7 @@
-package floris_van_lent_500717249.mad_assignment_1;
+package floris_van_lent_500717249.mad_assignment_2;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -13,15 +10,14 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import floris_van_lent_500717249.mad_assignment_1.database.DataSource;
+import floris_van_lent_500717249.mad_assignment_1.R;
+import floris_van_lent_500717249.mad_assignment_2.database.DataSource;
 
 public class MainActivity extends AppCompatActivity {
     private List<Serie> seriesList = new ArrayList<>();
