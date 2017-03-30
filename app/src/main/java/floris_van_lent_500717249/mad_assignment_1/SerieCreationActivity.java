@@ -33,7 +33,7 @@ public class SerieCreationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!TextUtils.isEmpty(titleField.getText()) && !TextUtils.isEmpty(yearField.getText())) {
 
-                    long id = (dataSource.getSeriesCount() + 1);
+                    long id = (dataSource.getSeriesCount() + 100); //Todo: write function to not have magic number
                     String title = titleField.getText().toString();
                     String year = yearField.getText().toString();
                     Serie serie = new Serie("" + id, title, year);

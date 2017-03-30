@@ -50,17 +50,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Instantiate series list from database
-        seriesFromDatabase = mDataSource.retrieveAllSeries();
-        Toast.makeText(this, "Series retrieved!", Toast.LENGTH_SHORT).show();
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
-        mAdapter = new SeriesRecyclerAdapter(seriesFromDatabase);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+//        seriesFromDatabase = mDataSource.retrieveAllSeries();
+//        Toast.makeText(this, "Series retrieved!", Toast.LENGTH_SHORT).show();
+//
+//        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+//
+//        mAdapter = new SeriesRecyclerAdapter(seriesFromDatabase);
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+//        recyclerView.setLayoutManager(mLayoutManager);
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        recyclerView.setAdapter(mAdapter);
+//        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +82,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mDataSource.open();
+        seriesFromDatabase = mDataSource.retrieveAllSeries();
+        Toast.makeText(this, "Series updated!", Toast.LENGTH_SHORT).show();
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        mAdapter = new SeriesRecyclerAdapter(seriesFromDatabase);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
     private void mockSeries() {
@@ -114,7 +124,5 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
-        mAdapter.notifyDataSetChanged();
     }
 }

@@ -56,8 +56,9 @@ public class DataSource {
     }
 
     public Serie retrieveSerie(String id) {
-        System.out.println("YO CHECK DIT ID DAN " + id);
-        Cursor cursor = mDatabase.query(SeriesTable.TABLE_SERIES, new String[] {SeriesTable.COLUMN_ID}, "id =? ", new String[] {id}, null, null, null);
+        Cursor cursor = mDatabase.query(SeriesTable.TABLE_SERIES, SeriesTable.ALL_COLUMNS, SeriesTable.COLUMN_ID + "=?", new String[] {id}, null, null, null);
+        cursor.moveToFirst();
+
         Serie serie = new Serie();
         serie.setId(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_ID)));
         serie.setTitle(cursor.getString(cursor.getColumnIndex(SeriesTable.COLUMN_TITLE)));

@@ -22,9 +22,8 @@ public class SerieUpdateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_serie_creation);
+        setContentView(R.layout.activity_serie_update);
         dataSource = new DataSource(this);
-
 
         titleField = (EditText) findViewById(R.id.titleField);
         yearField = (EditText) findViewById(R.id.yearField);
@@ -46,7 +45,7 @@ public class SerieUpdateActivity extends AppCompatActivity {
                     String title = titleField.getText().toString();
                     String year = yearField.getText().toString();
                     Serie serie = new Serie(id, title, year);
-                    dataSource.createSerie(serie);
+                    dataSource.updateSerie(serie);
                     finish();
                 }
             }
@@ -55,8 +54,8 @@ public class SerieUpdateActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            dataSource.deleteSerie(currentSerieId);
-            finish();
+                dataSource.deleteSerie(currentSerieId);
+                finish();
             }
         });
     }
