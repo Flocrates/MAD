@@ -17,6 +17,8 @@ public class SeriesTable {
     public static final String COLUMN_TITLE = "title";
     public static final String COLUMN_YEAR = "year";
 
+    public static final String[] ALL_COLUMNS = {COLUMN_ID, COLUMN_TITLE, COLUMN_YEAR};
+
     // Creation SQL statement
     public static final String SQL_CREATE_TABLE =
             "CREATE TABLE " + TABLE_SERIES + "(" +

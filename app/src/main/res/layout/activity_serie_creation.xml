@@ -10,4 +10,35 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="floris_van_lent_500717249.mad_assignment_1.SerieCreationActivity">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/titleField"
+        android:layout_alignParentEnd="true"
+        android:hint="Title" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/titleField"
+        android:layout_alignParentStart="true"
+        android:id="@+id/yearField"
+        android:layout_alignParentEnd="true"
+        android:hint="Year" />
+
+    <Button
+        android:text="Save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/yearField"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="35dp"
+        android:id="@+id/saveButton"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

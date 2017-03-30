@@ -24,6 +24,7 @@ import floris_van_lent_500717249.mad_assignment_1.database.DataSource;
 
 public class MainActivity extends AppCompatActivity {
     private List<Serie> seriesList = new ArrayList<>();
+    private List<Serie> seriesFromDatabase = new ArrayList<>();
     private RecyclerView recyclerView;
     private SeriesRecyclerAdapter mAdapter;
 
@@ -38,17 +39,22 @@ public class MainActivity extends AppCompatActivity {
 
         mDataSource = new DataSource(this);
         mDataSource.open();
-        Toast.makeText(this, "Database found!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Database connected!", Toast.LENGTH_SHORT).show();
 
+        // Seed database if necessary
         long seriesCount = mDataSource.getSeriesCount();
         if (seriesCount == 0) {
             mockSeries();
             Toast.makeText(this, "Added mock series to database!", Toast.LENGTH_LONG).show();
         }
 
+        // Instantiate series list from database
+        seriesFromDatabase = mDataSource.retrieveAllSeries();
+        Toast.makeText(this, "Series retrieved!", Toast.LENGTH_SHORT).show();
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mAdapter = new SeriesRecyclerAdapter(seriesList);
+        mAdapter = new SeriesRecyclerAdapter(seriesFromDatabase);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -58,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AddSerie.class);
+                Intent intent = new Intent(view.getContext(), SerieCreationActivity.class);
                 startActivityForResult(intent, 1);
             }
         });
