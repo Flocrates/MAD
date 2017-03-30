@@ -39,16 +39,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void mockSeries() {
-        Serie serie1  = new Serie ("How I Met Your Mother");
-        Serie serie2  = new Serie ("FRIENDS");
-        Serie serie3  = new Serie ("The Newsroom");
-        Serie serie4  = new Serie ("Orphan Black");
-        Serie serie5  = new Serie ("Game of Thrones");
-        Serie serie6  = new Serie ("Attack on Titan");
-        Serie serie7  = new Serie ("Fullmetal Alchemist");
-        Serie serie8  = new Serie ("Tom & Jerry");
-        Serie serie9  = new Serie ("Spongebob Squarepants");
-        Serie serie10 = new Serie ("Fairly Odd Parents");
+        Serie serie1  = new Serie ("How I Met Your Mother", "2005 - 2012");
+        Serie serie2  = new Serie ("FRIENDS", "1995 - 2002");
+        Serie serie3  = new Serie ("The Newsroom", "2005");
+        Serie serie4  = new Serie ("Orphan Black", "2012");
+        Serie serie5  = new Serie ("Game of Thrones", "2011");
+        Serie serie6  = new Serie ("Attack on Titan", "2007");
+        Serie serie7  = new Serie ("Fullmetal Alchemist", "2010");
+        Serie serie8  = new Serie ("Tom & Jerry", "1965");
+        Serie serie9  = new Serie ("Spongebob Squarepants", "1996");
+        Serie serie10 = new Serie ("Fairly Odd Parents", "1998");
 
         seriesList.add(serie1);
         seriesList.add(serie2);

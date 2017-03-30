@@ -17,11 +17,12 @@ public class SeriesRecyclerAdapter extends RecyclerView.Adapter<SeriesRecyclerAd
     private List<Serie> seriesList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, year, genre;
+        public TextView title, year;
 
         public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.title);
+            year = (TextView) view.findViewById(R.id.year);
         }
     }
 
@@ -41,6 +42,7 @@ public class SeriesRecyclerAdapter extends RecyclerView.Adapter<SeriesRecyclerAd
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Serie serie = seriesList.get(position);
         holder.title.setText(serie.getTitle());
+        holder.year.setText(serie.getYear());
     }
 
     @Override
