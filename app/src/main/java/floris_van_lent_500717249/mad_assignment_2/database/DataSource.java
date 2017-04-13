@@ -37,13 +37,13 @@ public class DataSource {
 
     public Task createSerie(Task task) {
         ContentValues values = task.toValues();
-        mDatabase.insert(TaskTable.TABLE_SERIES, null, values);
+        mDatabase.insert(TaskTable.TABLE_TASKS, null, values);
         return task;
     }
 
     public List<Task> retrieveAllSeries() {
         List<Task> seriesList = new ArrayList<>();
-        Cursor cursor = mDatabase.query(TaskTable.TABLE_SERIES, TaskTable.ALL_COLUMNS, null, null, null, null, null);
+        Cursor cursor = mDatabase.query(TaskTable.TABLE_TASKS, TaskTable.ALL_COLUMNS, null, null, null, null, null);
 
         while (cursor.moveToNext()) {
             Task task = new Task();
@@ -56,7 +56,7 @@ public class DataSource {
     }
 
     public Task retrieveSerie(String id) {
-        Cursor cursor = mDatabase.query(TaskTable.TABLE_SERIES, TaskTable.ALL_COLUMNS, TaskTable.COLUMN_ID + "=?", new String[] {id}, null, null, null);
+        Cursor cursor = mDatabase.query(TaskTable.TABLE_TASKS, TaskTable.ALL_COLUMNS, TaskTable.COLUMN_ID + "=?", new String[] {id}, null, null, null);
         cursor.moveToFirst();
 
         Task task = new Task();
@@ -67,14 +67,14 @@ public class DataSource {
     }
 
     public void updateSerie(Task task) {
-        mDatabase.update(TaskTable.TABLE_SERIES, task.toValues(), "id =? ", new String[] {task.getId()});
+        mDatabase.update(TaskTable.TABLE_TASKS, task.toValues(), "id =? ", new String[] {task.getId()});
     }
 
     public void deleteSerie(String id) {
-        mDatabase.delete(TaskTable.TABLE_SERIES, "id =? ", new String[] {id});
+        mDatabase.delete(TaskTable.TABLE_TASKS, "id =? ", new String[] {id});
     }
 
     public long getSeriesCount() {
-        return DatabaseUtils.queryNumEntries(mDatabase, TaskTable.TABLE_SERIES);
+        return DatabaseUtils.queryNumEntries(mDatabase, TaskTable.TABLE_TASKS);
     }
 }

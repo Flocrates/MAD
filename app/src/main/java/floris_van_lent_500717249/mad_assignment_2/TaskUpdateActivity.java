@@ -34,7 +34,7 @@ public class TaskUpdateActivity extends AppCompatActivity {
         currentTask = dataSource.retrieveSerie(currentSerieId);
 
         titleField.setText(currentTask.getTitle());
-        yearField.setText(currentTask.getYear());
+        yearField.setText(currentTask.getPerson());
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +60,7 @@ public class TaskUpdateActivity extends AppCompatActivity {
         });
     }
 
-    // Overrides up butten to have similar functionality as onBackPressed so previous activitu isn't reloaded
+    // Overrides up button to have similar functionality as onBackPressed so previous activitu isn't reloaded
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

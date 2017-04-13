@@ -32,7 +32,7 @@ public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdap
         public void bindSerie(Task task) {
             this.task = task;
             title.setText(task.getTitle());
-            year.setText(task.getYear());
+            year.setText(task.getPerson());
         }
 
         @Override

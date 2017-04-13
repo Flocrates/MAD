@@ -12,14 +12,18 @@ public class Task {
     private String id;
     private String title;
     private String person;
+    private String deadline;
+    private String done;
 
     public Task() {
     }
 
-    public Task(String id, String title, String person) {
+    public Task(String id, String title, String person, String deadline, String done) {
         this.id = id;
         this.title = title;
         this.person = person;
+        this.deadline = deadline;
+        this.done = done;
     }
 
     public String getId() {
@@ -38,12 +42,28 @@ public class Task {
         this.title = title;
     }
 
-    public String getYear() {
+    public String getPerson() {
         return person;
     }
 
-    public void setYear(String person) {
+    public void setPerson(String person) {
         this.person = person;
+    }
+
+    public String getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
+    }
+
+    public String getDone() {
+        return done;
+    }
+
+    public void setDone(String done) {
+        this.done = done;
     }
 
     public ContentValues toValues() {
@@ -52,6 +72,8 @@ public class Task {
         values.put(TaskTable.COLUMN_ID, id);
         values.put(TaskTable.COLUMN_TITLE, title);
         values.put(TaskTable.COLUMN_PERSON, person);
+        values.put(TaskTable.COLUMN_DEADLINE, deadline);
+        values.put(TaskTable.COLUMN_DONE, done);
 
         return values;
     }
