@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Tasks updated!", Toast.LENGTH_SHORT).show();
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mAdapter = new TasksRecyclerAdapter(tasksFromDatabase);
+        mAdapter = new TasksRecyclerAdapter(tasksFromDatabase, getApplicationContext());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

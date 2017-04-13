@@ -21,13 +21,6 @@
         android:layout_width="66dip"
         android:layout_height="66dip" />
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/imageView"
-        android:id="@+id/doneCheckBox"
-        android:layout_height="66dip" />
-
     <TextView
         android:text="Title"
         android:layout_width="match_parent"
@@ -36,18 +29,20 @@
         android:layout_toEndOf="@+id/doneCheckBox"
         android:id="@+id/titleTextView"
         android:textColor="@android:color/black"
-        android:paddingTop="10dip" />
+        android:paddingTop="7dip"
+        android:textSize="16sp" />
 
     <TextView
         android:text="Name"
         android:layout_width="wrap_content"
         android:layout_height="33dip"
-        android:layout_below="@+id/titleTextView"
-        android:layout_toEndOf="@+id/doneCheckBox"
+        android:layout_below="@+id/doneCheckBox"
+        android:layout_toEndOf="@+id/imageView"
         android:id="@+id/nameTextView"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="13sp"
-        android:paddingTop="10dip" />
+        android:textSize="16sp"
+        android:paddingTop="7dip"
+        android:paddingLeft="7dip" />
 
     <TextView
         android:text="Deadline"
@@ -57,9 +52,17 @@
         android:layout_toEndOf="@+id/nameTextView"
         android:id="@+id/deadlineTextView"
         android:textColor="@color/deadline"
-        android:textSize="13sp"
+        android:textSize="16sp"
         android:layout_marginLeft="20dip"
-        android:paddingTop="10dip" />
+        android:paddingTop="7dip" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:id="@+id/doneCheckBox"
+        android:layout_height="33dip"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imageView"
+        android:paddingTop="15dip" />
 
 
 </RelativeLayout>

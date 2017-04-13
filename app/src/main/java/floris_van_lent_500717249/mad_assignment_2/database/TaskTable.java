@@ -27,7 +27,7 @@ public class TaskTable {
                     COLUMN_TITLE + " TEXT NOT NULL, " +
                     COLUMN_PERSON + " TEXT, " +
                     COLUMN_DEADLINE + " TEXT, " +
-                    COLUMN_DONE + " TEXT, " + ");";
+                    COLUMN_DONE + " TEXT" + ");";
 
     public static final String SQL_DELETE_TABLE =
             "DROP TABLE " + TABLE_TASKS;

@@ -4,7 +4,11 @@ package floris_van_lent_500717249.mad_assignment_2;
  * Created by Floris on 30-03-2017.
  */
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,18 +22,19 @@ import java.util.List;
 public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdapter.SerieHolder> {
 
     private List<Task> seriesList;
+    private Context context;
+
     private final String USER_1_NAME = "Floris";
     private final String USER_2_NAME = "Marco";
-    private final String USER_1_ICON = "ironman";
-    private final String USER_2_ICON = "spiderman";
-    private final String USER_3_ICON = "joker";
-
 
     public class SerieHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView title, person, deadline;
         public ImageView personIcon;
         public CheckBox done;
         private Task task;
+        final Drawable USER_1_ICON = ResourcesCompat.getDrawable(context.getResources(), R.drawable.ironman, null);
+        final Drawable USER_2_ICON = ResourcesCompat.getDrawable(context.getResources(), R.drawable.spiderman, null);
+        final Drawable USER_3_ICON = ResourcesCompat.getDrawable(context.getResources(), R.drawable.joker, null);
 
         public SerieHolder(View view) {
             super(view);
@@ -41,10 +46,28 @@ public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdap
             deadline = (TextView) view.findViewById(R.id.deadlineTextView);
         }
 
+        // Sets the right icon for the right person
         public void bindTask(Task task) {
             this.task = task;
+
+
+            String name = task.getPerson();
+
             title.setText(task.getTitle());
-            person.setText(task.getPerson());
+            person.setText(name);
+            deadline.setText(task.getDeadline());
+
+            if (task.getDone().equals("1")) {
+                done.setChecked(true);
+            }
+
+            if (name.equals(USER_1_NAME)) {
+                personIcon.setImageDrawable(USER_1_ICON);
+            } else if (name.equals(USER_2_NAME)) {
+                personIcon.setImageDrawable(USER_2_ICON);
+            } else {
+                personIcon.setImageDrawable(USER_3_ICON);
+            }
         }
 
         @Override
@@ -55,8 +78,9 @@ public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdap
         }
     }
 
-    public TasksRecyclerAdapter(List<Task> seriesList) {
+    public TasksRecyclerAdapter(List<Task> seriesList, Context context) {
         this.seriesList = seriesList;
+        this.context = context;
     }
 
     @Override
