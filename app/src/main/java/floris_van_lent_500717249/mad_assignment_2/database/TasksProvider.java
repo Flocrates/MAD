@@ -4,6 +4,7 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
@@ -28,15 +29,19 @@ public class TasksProvider extends ContentProvider{
         uriMatcher.addURI(AUTHORITY, BASE_PATH + "/#", TASKS_ID);
     }
 
+    private SQLiteDatabase mDatabase;
+
     @Override
     public boolean onCreate() {
-        return false;
+        DatabaseHelper helper = new DatabaseHelper(getContext());
+        mDatabase = helper.getWritableDatabase();
+        return true;
     }
 
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] strings, String s, String[] strings1, String s1) {
-        return null;
+        return mDatabase.query(TaskTable.TABLE_TASKS, TaskTable.ALL_COLUMNS, s, null, null, null, null, null);
     }
 
     @Nullable
@@ -48,16 +53,17 @@ public class TasksProvider extends ContentProvider{
     @Nullable
     @Override
     public Uri insert(Uri uri, ContentValues contentValues) {
-        return null;
+        long id = mDatabase.insert(TaskTable.TABLE_TASKS, null, contentValues);
+        return Uri.parse(BASE_PATH + "/" + id);
     }
 
     @Override
     public int delete(Uri uri, String s, String[] strings) {
-        return 0;
+        return mDatabase.delete(TaskTable.TABLE_TASKS, s, strings);
     }
 
     @Override
     public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
-        return 0;
+        return mDatabase.update(TaskTable.TABLE_TASKS, contentValues, s, strings);
     }
 }

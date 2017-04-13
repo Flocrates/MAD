@@ -18,6 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="com.floris_van_lent_500717249.mad_assignment_2.tasksprovider"
+            android:name=".database.TasksProvider"
+            android:exported="false" />
         <activity android:name="floris_van_lent_500717249.mad_assignment_2.TaskCreationActivity" android:parentActivityName="floris_van_lent_500717249.mad_assignment_2.MainActivity"></activity>
         <activity android:name="floris_van_lent_500717249.mad_assignment_2.TaskUpdateActivity" android:parentActivityName="floris_van_lent_500717249.mad_assignment_2.MainActivity"></activity>
     </application>

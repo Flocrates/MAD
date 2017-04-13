@@ -1,9 +1,14 @@
 package floris_van_lent_500717249.mad_assignment_2;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
+import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -17,14 +22,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import floris_van_lent_500717249.mad_assignment_2.database.DataSource;
+import floris_van_lent_500717249.mad_assignment_2.database.TaskTable;
+import floris_van_lent_500717249.mad_assignment_2.database.TasksProvider;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
     private List<Task> taskList = new ArrayList<>();
     private List<Task> tasksFromDatabase = new ArrayList<>();
     private RecyclerView recyclerView;
     private TasksRecyclerAdapter mAdapter;
 
     DataSource mDataSource;
+
+    CursorAdapter cursorAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+
+        getLoaderManager();
     }
 
     @Override
@@ -63,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Cursor cursor = getContentResolver().query(TasksProvider.CONTENT_URI, TaskTable.ALL_COLUMNS, null, null, null, null);
+
+
         mDataSource.open();
         tasksFromDatabase = mDataSource.retrieveAllTasks();
         Toast.makeText(this, "Tasks updated!", Toast.LENGTH_SHORT).show();
@@ -74,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        cursor.close();
     }
 
     private void mockTasks() {
@@ -95,10 +111,25 @@ public class MainActivity extends AppCompatActivity {
 
         for (Task task : taskList) {
             try {
-                mDataSource.createTask(task);
+                getContentResolver().insert(TasksProvider.CONTENT_URI, task.toValues());
             } catch (SQLiteException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(this, TasksProvider.CONTENT_URI, TaskTable.ALL_COLUMNS, null, null, null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        cursorAdapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        cursorAdapter.swapCursor(null);
     }
 }
