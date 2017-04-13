@@ -13,7 +13,8 @@ import floris_van_lent_500717249.mad_assignment_2.database.DataSource;
 public class TaskCreationActivity extends AppCompatActivity {
     DataSource dataSource;
     EditText titleField;
-    EditText yearField;
+    EditText personField;
+    EditText deadlineField;
     Button saveButton;
 
     @Override
@@ -23,20 +24,24 @@ public class TaskCreationActivity extends AppCompatActivity {
         dataSource = new DataSource(this);
 
         titleField = (EditText) findViewById(R.id.titleField);
-        yearField = (EditText) findViewById(R.id.yearField);
+        personField = (EditText) findViewById(R.id.personField);
+        deadlineField = (EditText) findViewById(R.id.deadlineField);
         saveButton = (Button) findViewById(R.id.saveButton);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!TextUtils.isEmpty(titleField.getText()) && !TextUtils.isEmpty(yearField.getText())) {
+                if (!TextUtils.isEmpty(titleField.getText()) && !TextUtils.isEmpty(personField.getText())) {
+                    if (!TextUtils.isEmpty(deadlineField.getText())) {
 
-                    long id = (dataSource.getTasksCount() + 100); //Todo: write function to not have magic number
-                    String title = titleField.getText().toString();
-                    String year = yearField.getText().toString();
-                    Task task = new Task("" + id, title, "Hondjoch", "VANDAAG", "0");
-                    dataSource.createTask(task);
-                    finish();
+                        long id = (dataSource.getTasksCount() + 100);
+                        String title = titleField.getText().toString();
+                        String person = personField.getText().toString();
+                        String deadline = deadlineField.getText().toString();
+                        Task task = new Task("" + id, title, person, deadline, "0");
+                        dataSource.createTask(task);
+                        finish();
+                    }
                 }
             }
         });

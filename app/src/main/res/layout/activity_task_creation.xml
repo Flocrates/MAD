@@ -19,7 +19,7 @@
         android:layout_alignParentStart="true"
         android:id="@+id/titleField"
         android:layout_alignParentEnd="true"
-        android:hint="Task Description" />
+        android:hint="What needs to be done?" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -28,15 +28,26 @@
         android:ems="10"
         android:layout_below="@+id/titleField"
         android:layout_alignParentStart="true"
-        android:id="@+id/yearField"
+        android:id="@+id/personField"
         android:layout_alignParentEnd="true"
-        android:hint="Deadline" />
+        android:hint="Who should do this?" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/personField"
+        android:layout_alignParentStart="true"
+        android:id="@+id/deadlineField"
+        android:layout_alignParentEnd="true"
+        android:hint="When should it be done?" />
 
     <Button
         android:text="Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/yearField"
+        android:layout_below="@+id/deadlineField"
         android:layout_alignParentStart="true"
         android:layout_marginTop="35dp"
         android:id="@+id/saveButton"

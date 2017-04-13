@@ -50,7 +50,6 @@ public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdap
         public void bindTask(Task task) {
             this.task = task;
 
-
             String name = task.getPerson();
 
             title.setText(task.getTitle());

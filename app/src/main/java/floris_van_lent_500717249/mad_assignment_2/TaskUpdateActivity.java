@@ -13,10 +13,12 @@ import floris_van_lent_500717249.mad_assignment_2.database.DataSource;
 public class TaskUpdateActivity extends AppCompatActivity {
     DataSource dataSource;
     EditText titleField;
-    EditText yearField;
+    EditText personField;
+    EditText deadlineField;
+    EditText doneField;
     Button updateButton;
     Button deleteButton;
-    String currentSerieId;
+    String currentTaskId;
     Task currentTask;
 
     @Override
@@ -26,27 +28,34 @@ public class TaskUpdateActivity extends AppCompatActivity {
         dataSource = new DataSource(this);
 
         titleField = (EditText) findViewById(R.id.titleField);
-        yearField = (EditText) findViewById(R.id.yearField);
+        personField = (EditText) findViewById(R.id.personField);
+        deadlineField = (EditText) findViewById(R.id.deadlineField);
+        doneField = (EditText) findViewById(R.id.doneField);
         updateButton = (Button) findViewById(R.id.updateButton);
         deleteButton = (Button) findViewById(R.id.deleteButton);
 
-        currentSerieId = getIntent().getStringExtra("id");
-        currentTask = dataSource.retrieveTask(currentSerieId);
+        currentTaskId = getIntent().getStringExtra("id");
+        currentTask = dataSource.retrieveTask(currentTaskId);
 
         titleField.setText(currentTask.getTitle());
-        yearField.setText(currentTask.getPerson());
+        personField.setText(currentTask.getPerson());
+        deadlineField.setText(currentTask.getDeadline());
+        doneField.setText(currentTask.getDone());
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!TextUtils.isEmpty(titleField.getText()) && !TextUtils.isEmpty(yearField.getText())) {
-
-                    String id = currentSerieId;
-                    String title = titleField.getText().toString();
-                    String year = yearField.getText().toString();
-                    Task task = new Task(id, title, year, "Hondjoch", "0");
-                    dataSource.updateTask(task);
-                    finish();
+                if(!TextUtils.isEmpty(titleField.getText()) && !TextUtils.isEmpty(personField.getText())) {
+                    if(!TextUtils.isEmpty(deadlineField.getText()) && !TextUtils.isEmpty(doneField.getText())) {
+                        String id = currentTaskId;
+                        String title = titleField.getText().toString();
+                        String person = personField.getText().toString();
+                        String deadline = deadlineField.getText().toString();
+                        String done = doneField.getText().toString();
+                        Task task = new Task(id, title, person, deadline, done);
+                        dataSource.updateTask(task);
+                        finish();
+                    }
                 }
             }
         });
@@ -54,7 +63,7 @@ public class TaskUpdateActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataSource.deleteTask(currentSerieId);
+                dataSource.deleteTask(currentTaskId);
                 finish();
             }
         });
