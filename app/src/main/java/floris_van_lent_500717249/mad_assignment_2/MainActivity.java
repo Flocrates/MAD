@@ -19,8 +19,8 @@ import java.util.List;
 import floris_van_lent_500717249.mad_assignment_2.database.DataSource;
 
 public class MainActivity extends AppCompatActivity {
-    private List<Task> seriesList = new ArrayList<>();
-    private List<Task> seriesFromDatabase = new ArrayList<>();
+    private List<Task> taskList = new ArrayList<>();
+    private List<Task> tasksFromDatabase = new ArrayList<>();
     private RecyclerView recyclerView;
     private TasksRecyclerAdapter mAdapter;
 
@@ -38,19 +38,19 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Database connected!", Toast.LENGTH_SHORT).show();
 
         // Seed database if necessary
-        long seriesCount = mDataSource.getSeriesCount();
-        if (seriesCount == 0) {
-            mockSeries();
+        long tasksCount = mDataSource.getTasksCount();
+        if (tasksCount == 0) {
+            mockTasks();
             Toast.makeText(this, "Added mock tasks to database!", Toast.LENGTH_LONG).show();
         }
 
         // Instantiate series list from database
-//        seriesFromDatabase = mDataSource.retrieveAllSeries();
+//        tasksFromDatabase = mDataSource.retrieveAllTasks();
 //        Toast.makeText(this, "Series retrieved!", Toast.LENGTH_SHORT).show();
 //
 //        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 //
-//        mAdapter = new TasksRecyclerAdapter(seriesFromDatabase);
+//        mAdapter = new TasksRecyclerAdapter(tasksFromDatabase);
 //        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
 //        recyclerView.setLayoutManager(mLayoutManager);
 //        recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -77,11 +77,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mDataSource.open();
-        seriesFromDatabase = mDataSource.retrieveAllSeries();
+        tasksFromDatabase = mDataSource.retrieveAllTasks();
         Toast.makeText(this, "Tasks updated!", Toast.LENGTH_SHORT).show();
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mAdapter = new TasksRecyclerAdapter(seriesFromDatabase);
+        mAdapter = new TasksRecyclerAdapter(tasksFromDatabase);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -89,26 +89,26 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
-    private void mockSeries() {
-        Task task1 = new Task("1", "Keuken Schoonmaken", "31/03/2017 14:00");
-        Task task2 = new Task("2", "Boodschappen doen", "02/04/2017 18:00");
-        Task task3 = new Task("3", "Badkamer opruimen", "08/04/2017 20:00");
-        Task task4 = new Task("4", "Afwas doen", "12/04/2017 14:00");
-        Task task5 = new Task("5", "Hond wassen", "14/04/2017 16:00");
-        Task task6 = new Task("6", "Pasen met schoonouders :(", "16/05/2017 13:00");
-        Task task7 = new Task("7", "Vuilnis buitenzetten", "18/05/2017 08:00");
+    private void mockTasks() {
+        Task task1 = new Task("1", "App afmaken", "Floris", "14/04/2017 17:00", "1");
+        Task task2 = new Task("2", "Naar school fietsen", "Floris", "14/04/2017 17:15", "1");
+        Task task7 = new Task("3", "Floris een 8,0 geven", "Marco", "14/04/2017 17:30", "0");
+        Task task3 = new Task("4", "Badkamer schoonmaken", "Henk", "14/04/2017 20:00", "0");
+        Task task4 = new Task("5", "Afwas doen", "Henk", "15/04/2017 14:00", "0");
+        Task task5 = new Task("6", "Hond wassen", "Henk", "15/04/2017 16:00", "0");
+        Task task6 = new Task("7", "Pasen met schoonouders :(", "Floris", "16/05/2017 12:00", "0");
 
-        seriesList.add(task1);
-        seriesList.add(task2);
-        seriesList.add(task3);
-        seriesList.add(task4);
-        seriesList.add(task5);
-        seriesList.add(task6);
-        seriesList.add(task7);
+        taskList.add(task1);
+        taskList.add(task2);
+        taskList.add(task3);
+        taskList.add(task4);
+        taskList.add(task5);
+        taskList.add(task6);
+        taskList.add(task7);
 
-        for (Task task : seriesList) {
+        for (Task task : taskList) {
             try {
-                mDataSource.createSerie(task);
+                mDataSource.createTask(task);
             } catch (SQLiteException e) {
                 e.printStackTrace();
             }

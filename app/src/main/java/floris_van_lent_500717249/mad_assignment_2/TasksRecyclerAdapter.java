@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -16,23 +18,33 @@ import java.util.List;
 public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdapter.SerieHolder> {
 
     private List<Task> seriesList;
+    private final String USER_1_NAME = "Floris";
+    private final String USER_2_NAME = "Marco";
+    private final String USER_1_ICON = "ironman";
+    private final String USER_2_ICON = "spiderman";
+    private final String USER_3_ICON = "joker";
 
 
     public class SerieHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView title, year;
+        public TextView title, person, deadline;
+        public ImageView personIcon;
+        public CheckBox done;
         private Task task;
 
         public SerieHolder(View view) {
             super(view);
             view.setOnClickListener(this);
-            title = (TextView) view.findViewById(R.id.title);
-            year = (TextView) view.findViewById(R.id.year);
+            personIcon = (ImageView) view.findViewById(R.id.imageView);
+            done = (CheckBox) view.findViewById(R.id.doneCheckBox);
+            title = (TextView) view.findViewById(R.id.titleTextView);
+            person = (TextView) view.findViewById(R.id.nameTextView);
+            deadline = (TextView) view.findViewById(R.id.deadlineTextView);
         }
 
-        public void bindSerie(Task task) {
+        public void bindTask(Task task) {
             this.task = task;
             title.setText(task.getTitle());
-            year.setText(task.getPerson());
+            person.setText(task.getPerson());
         }
 
         @Override
@@ -58,7 +70,7 @@ public class TasksRecyclerAdapter extends RecyclerView.Adapter<TasksRecyclerAdap
     @Override
     public void onBindViewHolder(SerieHolder holder, int position) {
         Task task = seriesList.get(position);
-        holder.bindSerie(task);
+        holder.bindTask(task);
     }
 
     @Override

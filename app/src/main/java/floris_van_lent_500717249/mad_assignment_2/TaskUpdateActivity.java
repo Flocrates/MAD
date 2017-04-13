@@ -31,7 +31,7 @@ public class TaskUpdateActivity extends AppCompatActivity {
         deleteButton = (Button) findViewById(R.id.deleteButton);
 
         currentSerieId = getIntent().getStringExtra("id");
-        currentTask = dataSource.retrieveSerie(currentSerieId);
+        currentTask = dataSource.retrieveTask(currentSerieId);
 
         titleField.setText(currentTask.getTitle());
         yearField.setText(currentTask.getPerson());
@@ -44,8 +44,8 @@ public class TaskUpdateActivity extends AppCompatActivity {
                     String id = currentSerieId;
                     String title = titleField.getText().toString();
                     String year = yearField.getText().toString();
-                    Task task = new Task(id, title, year);
-                    dataSource.updateSerie(task);
+                    Task task = new Task(id, title, year, "Hondjoch", "0");
+                    dataSource.updateTask(task);
                     finish();
                 }
             }
@@ -54,7 +54,7 @@ public class TaskUpdateActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataSource.deleteSerie(currentSerieId);
+                dataSource.deleteTask(currentSerieId);
                 finish();
             }
         });

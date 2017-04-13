@@ -35,13 +35,13 @@ public class DataSource {
         mDatabase.close();
     }
 
-    public Task createSerie(Task task) {
+    public Task createTask(Task task) {
         ContentValues values = task.toValues();
         mDatabase.insert(TaskTable.TABLE_TASKS, null, values);
         return task;
     }
 
-    public List<Task> retrieveAllSeries() {
+    public List<Task> retrieveAllTasks() {
         List<Task> seriesList = new ArrayList<>();
         Cursor cursor = mDatabase.query(TaskTable.TABLE_TASKS, TaskTable.ALL_COLUMNS, null, null, null, null, null);
 
@@ -49,32 +49,36 @@ public class DataSource {
             Task task = new Task();
             task.setId(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_ID)));
             task.setTitle(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_TITLE)));
-            task.setYear(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_PERSON)));
+            task.setPerson(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_PERSON)));
+            task.setDeadline(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_DEADLINE)));
+            task.setDone(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_DONE)));
             seriesList.add(task);
         }
         return seriesList;
     }
 
-    public Task retrieveSerie(String id) {
+    public Task retrieveTask(String id) {
         Cursor cursor = mDatabase.query(TaskTable.TABLE_TASKS, TaskTable.ALL_COLUMNS, TaskTable.COLUMN_ID + "=?", new String[] {id}, null, null, null);
         cursor.moveToFirst();
 
         Task task = new Task();
         task.setId(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_ID)));
         task.setTitle(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_TITLE)));
-        task.setYear(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_PERSON)));
+        task.setPerson(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_PERSON)));
+        task.setDeadline(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_DEADLINE)));
+        task.setDone(cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_DONE)));
         return task;
     }
 
-    public void updateSerie(Task task) {
+    public void updateTask(Task task) {
         mDatabase.update(TaskTable.TABLE_TASKS, task.toValues(), "id =? ", new String[] {task.getId()});
     }
 
-    public void deleteSerie(String id) {
+    public void deleteTask(String id) {
         mDatabase.delete(TaskTable.TABLE_TASKS, "id =? ", new String[] {id});
     }
 
-    public long getSeriesCount() {
+    public long getTasksCount() {
         return DatabaseUtils.queryNumEntries(mDatabase, TaskTable.TABLE_TASKS);
     }
 }

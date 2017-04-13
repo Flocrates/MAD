@@ -12,6 +12,7 @@
     android:background="?android:attr/selectableItemBackground"
     android:orientation="vertical">
 
+
     <ImageView
         app:srcCompat="@drawable/spiderman"
         android:layout_alignParentTop="true"

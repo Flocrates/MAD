@@ -31,18 +31,18 @@ public class TaskCreationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!TextUtils.isEmpty(titleField.getText()) && !TextUtils.isEmpty(yearField.getText())) {
 
-                    long id = (dataSource.getSeriesCount() + 100); //Todo: write function to not have magic number
+                    long id = (dataSource.getTasksCount() + 100); //Todo: write function to not have magic number
                     String title = titleField.getText().toString();
                     String year = yearField.getText().toString();
-                    Task task = new Task("" + id, title, year);
-                    dataSource.createSerie(task);
+                    Task task = new Task("" + id, title, "Hondjoch", "VANDAAG", "0");
+                    dataSource.createTask(task);
                     finish();
                 }
             }
         });
     }
 
-    // Overrides up butten to have similar functionality as onBackPressed so previous activitu isn't reloaded
+    // Overrides up button to have similar functionality as onBackPressed so previous activity isn't reloaded
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
