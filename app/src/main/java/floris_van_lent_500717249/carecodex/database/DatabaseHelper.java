@@ -1,4 +1,4 @@
-package floris_van_lent_500717249.mad_assignment_2.database;
+package floris_van_lent_500717249.carecodex.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,12 +19,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TaskTable.SQL_CREATE_TABLE);
+        db.execSQL(XDS_Table.SQL_CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(TaskTable.SQL_DELETE_TABLE);
+        db.execSQL(XDS_Table.SQL_DELETE_TABLE);
         onCreate(db);
     }
 }

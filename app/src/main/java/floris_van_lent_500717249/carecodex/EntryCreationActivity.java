@@ -1,61 +1,43 @@
-package floris_van_lent_500717249.mad_assignment_2;
+package floris_van_lent_500717249.carecodex;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import floris_van_lent_500717249.mad_assignment_2.database.DataSource;
+import floris_van_lent_500717249.carecodex.database.DataSource;
 
-public class TaskUpdateActivity extends AppCompatActivity {
+public class EntryCreationActivity extends AppCompatActivity {
     DataSource dataSource;
     EditText titleField;
     EditText yearField;
-    Button updateButton;
-    Button deleteButton;
-    String currentSerieId;
-    Task currentTask;
+    Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task_update);
+        setContentView(R.layout.activity_entry_creation);
         dataSource = new DataSource(this);
 
         titleField = (EditText) findViewById(R.id.titleField);
         yearField = (EditText) findViewById(R.id.yearField);
-        updateButton = (Button) findViewById(R.id.updateButton);
-        deleteButton = (Button) findViewById(R.id.deleteButton);
+        saveButton = (Button) findViewById(R.id.saveButton);
 
-        currentSerieId = getIntent().getStringExtra("id");
-        currentTask = dataSource.retrieveSerie(currentSerieId);
-
-        titleField.setText(currentTask.getTitle());
-        yearField.setText(currentTask.getYear());
-
-        updateButton.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!TextUtils.isEmpty(titleField.getText()) && !TextUtils.isEmpty(yearField.getText())) {
 
-                    String id = currentSerieId;
+                    long id = (dataSource.getXdsEntryCount() + 100); //Todo: write function to not have magic number
                     String title = titleField.getText().toString();
                     String year = yearField.getText().toString();
-                    Task task = new Task(id, title, year);
-                    dataSource.updateSerie(task);
+                    XDS XDS = new XDS("" + id, title, year);
+                    dataSource.createSerie(XDS);
                     finish();
                 }
-            }
-        });
-
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dataSource.deleteSerie(currentSerieId);
-                finish();
             }
         });
     }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_create_serie"
+    android:id="@+id/activity_entry_creation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="floris_van_lent_500717249.mad_assignment_2.TaskUpdateActivity">
+    tools:context="floris_van_lent_500717249.carecodex.EntryCreationActivity">
 
     <EditText
         android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
         android:layout_alignParentStart="true"
         android:id="@+id/titleField"
         android:layout_alignParentEnd="true"
-        android:hint="Task Description" />
+        android:hint="Data Type" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -30,27 +30,15 @@
         android:layout_alignParentStart="true"
         android:id="@+id/yearField"
         android:layout_alignParentEnd="true"
-        android:hint="Deadline" />
+        android:hint="Value" />
 
     <Button
-        android:text="Update"
+        android:text="Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/yearField"
         android:layout_alignParentStart="true"
         android:layout_marginTop="35dp"
-        android:id="@+id/updateButton"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="Delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/deleteButton"
-        android:background="@android:color/holo_red_dark"
-        android:textColor="@android:color/background_light"
-        android:layout_below="@+id/updateButton"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="29dp"
+        android:id="@+id/saveButton"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package floris_van_lent_500717249.mad_assignment_2;
+package floris_van_lent_500717249.carecodex;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
