@@ -69,7 +69,7 @@ public class TaskUpdateActivity extends AppCompatActivity {
         });
     }
 
-    // Overrides up button to have similar functionality as onBackPressed so previous activitu isn't reloaded
+    // Overrides up button to have similar functionality as onBackPressed so previous activity isn't reloaded
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
