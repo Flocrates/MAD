@@ -93,21 +93,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     private void mockTasks() {
-        Task task1 = new Task("1", "App afmaken", "Floris", "14/04/2017 17:00", "1");
-        Task task2 = new Task("2", "Naar school fietsen", "Floris", "14/04/2017 17:15", "1");
-        Task task7 = new Task("3", "Floris een 8,0 geven", "Marco", "14/04/2017 17:30", "0");
-        Task task3 = new Task("4", "Badkamer schoonmaken", "Henk", "14/04/2017 20:00", "0");
-        Task task4 = new Task("5", "Afwas doen", "Henk", "15/04/2017 14:00", "0");
-        Task task5 = new Task("6", "Hond wassen", "Henk", "15/04/2017 16:00", "0");
-        Task task6 = new Task("7", "Pasen met schoonouders :(", "Floris", "16/05/2017 12:00", "0");
+        Task task1 = new Task("8", "Pizza Bakken", "Floris", "22/06/2017 18:15", "0");
+        Task task2 = new Task("1", "Naar school fietsen", "Floris", "16/06/2017 11:15", "1");
+        Task task3 = new Task("3", "Badkamer schoonmaken", "Henk", "17/06/2017 20:00", "0");
+        Task task4 = new Task("4", "Afwas doen", "Henk", "18/06/2017 14:00", "0");
+        Task task5 = new Task("5", "Hond wassen", "Henk", "19/06/2017 16:00", "0");
+        Task task6 = new Task("6", "Uit eten met schoonouders :(", "Floris", "20/06/2017 12:00", "0");
+        Task task7 = new Task("2", "Floris een 7,0 geven", "Marco", "16/06/2017 11:45", "0");
 
-        taskList.add(task1);
         taskList.add(task2);
+        taskList.add(task7);
         taskList.add(task3);
         taskList.add(task4);
         taskList.add(task5);
         taskList.add(task6);
-        taskList.add(task7);
+        taskList.add(task1);
 
         for (Task task : taskList) {
             try {
